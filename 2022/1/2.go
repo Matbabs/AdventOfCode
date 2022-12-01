@@ -9,10 +9,8 @@ import (
 
 func main() {
 	var (
-		max_1    = 0
-		max_2    = 0
-		max_3    = 0
-		calories = 0
+		max_cls = make([]int, 3)
+		cls     = 0
 	)
 	file, _ := os.Open("input.txt")
 	defer file.Close()
@@ -20,18 +18,18 @@ func main() {
 	for scanner.Scan() {
 		line := scanner.Text()
 		if line == "" {
-			if calories > max_1 {
-				max_3, max_2, max_1 = max_2, max_1, calories
-			} else if calories > max_2 {
-				max_3, max_2 = max_2, calories
-			} else if calories > max_3 {
-				max_3 = calories
+			if cls > max_cls[2] {
+				max_cls[0], max_cls[1], max_cls[2] = max_cls[1], max_cls[2], cls
+			} else if cls > max_cls[1] {
+				max_cls[0], max_cls[1] = max_cls[1], cls
+			} else if cls > max_cls[0] {
+				max_cls[0] = cls
 			}
-			calories = 0
+			cls = 0
 			continue
 		}
 		kcl, _ := strconv.Atoi(line)
-		calories += kcl
+		cls += kcl
 	}
-	fmt.Println(max_1 + max_2 + max_3)
+	fmt.Println(max_cls[2] + max_cls[1] + max_cls[0])
 }
