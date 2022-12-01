@@ -1,7 +1,7 @@
 
 <h1 align="center">AdventOfCode</h1>
 
-<h3 align="center">My solutions to the <a href="https://adventofcode.com/">adventofcode.com puzzles.</a></h3>
+<h3 align="center">My solutions to the <a href="https://adventofcode.com/">adventofcode.com</a> puzzles.</h3>
 
 <hr>
 
