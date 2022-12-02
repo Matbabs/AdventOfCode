@@ -33,7 +33,7 @@
 
 ## About
 
-This repository contains my solutions to the Advent of Code puzzles. I try to solve the puzzles in different programming languages (C++, Golang), so that I can learn new languages and improve my skills in the ones I already know.
+This repository contains my solutions to the Advent of Code puzzles. I try to solve the puzzles in different programming languages (C++, Golang, Python), so that I can learn new languages and improve my skills in the ones I already know.
 
 ## Getting Started
 
@@ -63,6 +63,9 @@ go build 1.go
 
 ```sh
 ./1
+```
+```sh
+python3 1.py
 ```
 
 ## Contact
