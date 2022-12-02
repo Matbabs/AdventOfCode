@@ -18,4 +18,53 @@
 
 > Advent of Code is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like. People use them as interview prep, company training, university coursework, practice problems, a speed contest, or to challenge each other.
 
-<img src="./assets/calendar.png">
+## Table of Contents
+
+- [About](#about)
+
+- [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+
+<img align="center" src="./assets/calendar.png">
+
+> The calendar for the 2021 event.
+
+
+## About
+
+This repository contains my solutions to the Advent of Code puzzles. I try to solve the puzzles in different programming languages (C++, Golang), so that I can learn new languages and improve my skills in the ones I already know.
+
+## Getting Started
+
+### Prerequisites
+
+- C++ compiler (e.g. g++)
+- Golang compiler (e.g. go)
+
+### Installation
+
+1. Clone the repo
+
+```sh
+git clone https://github.com/Matbabs/AdventOfCode.git
+```
+
+2. Compile the code
+
+```sh
+g++ 1.cpp -o 1
+```
+```sh
+go build 1.go
+```
+
+3. Run the code
+
+```sh
+./1
+```
+
+## Contact
+
+Matbabs - [@_Matbabs](https://twitter.com/_Matbabs)
