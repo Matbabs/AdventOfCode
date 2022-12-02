@@ -53,18 +53,22 @@ git clone https://github.com/Matbabs/AdventOfCode.git
 2. Compile the code
 
 ```sh
+# CPP
 g++ 1.cpp -o 1
 ```
 ```sh
+# Go
 go build 1.go
 ```
 
 3. Run the code
 
 ```sh
+# CPP and Go
 ./1
 ```
 ```sh
+# Python
 python3 1.py
 ```
 
