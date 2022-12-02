@@ -22,11 +22,9 @@ func main() {
 		case "X":
 			score += loose_table[elf]
 		case "Y":
-			score += 3
-			score += draw_table[elf]
+			score += 3 + draw_table[elf]
 		case "Z":
-			score += 6
-			score += win_table[elf]
+			score += 6 + win_table[elf]
 		}
 	}
 	fmt.Println(score)
