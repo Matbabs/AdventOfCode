@@ -22,7 +22,7 @@ func main() {
 		for j, c := range line {
 			if (j-1)%2 == 0 {
 				i += 0.5
-				if c >= 65 && c <= 90 {
+				if c >= 'A' && c <= 'Z' {
 					stacks[int(i)] = append(stacks[int(i)], c)
 				}
 			}
