@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	var stacks = make(map[int][]string)
+	var stacks = make(map[int][]rune)
 	file, _ := os.Open("input.txt")
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
@@ -23,7 +23,7 @@ func main() {
 			if (j-1)%2 == 0 {
 				i += 0.5
 				if c >= 65 && c <= 90 {
-					stacks[int(i)] = append(stacks[int(i)], string(c))
+					stacks[int(i)] = append(stacks[int(i)], c)
 				}
 			}
 		}
@@ -35,13 +35,13 @@ func main() {
 			op[i], _ = strconv.Atoi(n)
 		}
 		for i := 0; i < op[0]; i++ {
-			stacks[op[2]] = append([]string{stacks[op[1]][0]}, stacks[op[2]]...)
+			stacks[op[2]] = append([]rune{stacks[op[1]][0]}, stacks[op[2]]...)
 			stacks[op[1]] = stacks[op[1]][1:]
 		}
 	}
 	res := ""
 	for i := 0; i < len(stacks); i++ {
-		res += stacks[i+1][0]
+		res += string(stacks[i+1][0])
 	}
 	fmt.Println(res)
 }
