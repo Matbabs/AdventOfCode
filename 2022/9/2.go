@@ -26,13 +26,13 @@ func main() {
 		for i := 0; i < d; i++ {
 			switch op[0] {
 			case "U":
-				nodes[0][1] += 1
+				nodes[0][1]++
 			case "D":
-				nodes[0][1] -= 1
+				nodes[0][1]--
 			case "L":
-				nodes[0][0] -= 1
+				nodes[0][0]--
 			case "R":
-				nodes[0][0] += 1
+				nodes[0][0]++
 			}
 			for j := range nodes[1:] {
 				hx, hy := nodes[j][0], nodes[j][1]

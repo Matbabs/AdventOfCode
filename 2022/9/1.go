@@ -21,13 +21,13 @@ func main() {
 		for i := 0; i < d; i++ {
 			switch op[0] {
 			case "U":
-				yh += 1
+				yh++
 			case "D":
-				yh -= 1
+				yh--
 			case "L":
-				xh -= 1
+				xh--
 			case "R":
-				xh += 1
+				xh++
 			}
 			if math.Abs(float64(yh-yt)) > 1 || math.Abs(float64(xh-xt)) > 1 {
 				xt = xh_last
