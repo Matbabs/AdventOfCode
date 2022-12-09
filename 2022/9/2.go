@@ -14,10 +14,8 @@ const NB_NODES = 10
 func main() {
 	visited := make(map[string]bool)
 	nodes := make([][]int, NB_NODES)
-	lasts := make([][]int, NB_NODES)
 	for i := 0; i < NB_NODES; i++ {
 		nodes[i] = make([]int, 2)
-		lasts[i] = make([]int, 2)
 	}
 	file, _ := os.Open("input.txt")
 	defer file.Close()
