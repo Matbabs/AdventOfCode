@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"os/exec"
 	"regexp"
 	"sort"
 	"strconv"
@@ -67,9 +66,15 @@ func main() {
 				item := monkeys[j].items[0]
 				monkeys[j].items = monkeys[j].items[1:]
 				exp := strings.ReplaceAll(monkeys[j].ops, "old", strconv.Itoa(item))
-				cmd, _ := exec.Command("bash", "-c", fmt.Sprintf("echo $((%s))", exp)).Output()
-				lvl, _ := strconv.Atoi(string(cmd[:len(cmd)-1]))
-				lvl = lvl % solve
+				ops := strings.Split(exp, " ")
+				lvl := 0
+				first, _ := strconv.Atoi(ops[1])
+				second, _ := strconv.Atoi(ops[3])
+				if ops[2] == "+" {
+					lvl = (first + second) % solve
+				} else {
+					lvl = (first * second) % solve
+				}
 				if lvl%monkeys[j].test == 0 {
 					monkeys[monkeys[j].true].items = append(monkeys[monkeys[j].true].items, lvl)
 				} else {
