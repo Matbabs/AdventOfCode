@@ -20,7 +20,7 @@ type Monkey struct {
 	false int
 }
 
-func getInt(line string) int {
+func getLastInt(line string) int {
 	split := strings.Split(line, " ")
 	v, _ := strconv.Atoi(split[len(split)-1])
 	return v
@@ -47,12 +47,12 @@ func main() {
 		case 2:
 			monkey.ops = strings.Split(line, "=")[1]
 		case 3:
-			monkey.test = getInt(line)
+			monkey.test = getLastInt(line)
 			solve *= monkey.test
 		case 4:
-			monkey.true = getInt(line)
+			monkey.true = getLastInt(line)
 		case 5:
-			monkey.false = getInt(line)
+			monkey.false = getLastInt(line)
 			monkeys = append(monkeys, monkey)
 			inspections = append(inspections, 0)
 			monkey = Monkey{items: []int{}}
