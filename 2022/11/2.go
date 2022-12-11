@@ -67,13 +67,12 @@ func main() {
 				monkeys[j].items = monkeys[j].items[1:]
 				exp := strings.ReplaceAll(monkeys[j].ops, "old", strconv.Itoa(item))
 				ops := strings.Split(exp, " ")
-				lvl := 0
-				first, _ := strconv.Atoi(ops[1])
-				second, _ := strconv.Atoi(ops[3])
+				lvl, _ := strconv.Atoi(ops[1])
+				opr, _ := strconv.Atoi(ops[3])
 				if ops[2] == "+" {
-					lvl = (first + second) % solve
+					lvl = (lvl + opr) % solve
 				} else {
-					lvl = (first * second) % solve
+					lvl = (lvl * opr) % solve
 				}
 				if lvl%monkeys[j].test == 0 {
 					monkeys[monkeys[j].true].items = append(monkeys[monkeys[j].true].items, lvl)
