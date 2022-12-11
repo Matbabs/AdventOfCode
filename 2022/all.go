@@ -39,12 +39,12 @@ func main() {
 	displayTitle()
 	for i := 1; i <= 25; i++ {
 		for j := 1; j <= 2; j++ {
-			res := executeDayByPart(i, j)
-			if res != nil {
+			result := executeDayByPart(i, j)
+			if result != nil {
 				if j == 1 {
 					displayDay(i)
 				}
-				res()
+				result()
 			}
 		}
 	}
