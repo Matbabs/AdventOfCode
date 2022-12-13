@@ -50,30 +50,25 @@ func compare(a1 []any, a2 []any) int {
 	return 0
 }
 
-func isOrdered(l1, l2 string) int {
-	a1 := parseArray(l1)
-	a2 := parseArray(l2)
-	return compare(a1, a2)
-}
-
 func main() {
-	l1, l2 := "", ""
+	var p1, p2 []any
 	pair_id := 1
 	pairs_sum := 0
 	file, _ := os.Open("input.txt")
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		if l1 == "" {
-			l1 = scanner.Text()
-		} else if l2 == "" {
-			l2 = scanner.Text()
+		line := scanner.Text()
+		if p1 == nil {
+			p1 = parseArray(line)
+		} else if p2 == nil {
+			p2 = parseArray(line)
 		}
-		if l1 != "" && l2 != "" {
-			if isOrdered(l1, l2) == 1 {
+		if p1 != nil && p2 != nil {
+			if compare(p1, p2) == 1 {
 				pairs_sum += pair_id
 			}
-			l1, l2 = "", ""
+			p1, p2 = nil, nil
 			pair_id++
 		}
 	}
