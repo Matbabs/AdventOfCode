@@ -54,8 +54,8 @@ func main() {
 		_map[fmt.Sprintf("%d,%d", x, depth)] = '#'
 	}
 	steps := 0
-	isReachedTop := false
-	for !isReachedTop {
+	hasReachedTop := false
+	for !hasReachedTop {
 		i := SAND_Y
 		j := SAND_X
 		isImmobilized := false
@@ -77,7 +77,7 @@ func main() {
 			isImmobilized = true
 			steps++
 			if i == SAND_Y && j == SAND_X {
-				isReachedTop = true
+				hasReachedTop = true
 				break
 			}
 		}
