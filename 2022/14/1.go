@@ -28,12 +28,6 @@ func main() {
 			y1, _ := strconv.Atoi(xy1[1])
 			x2, _ := strconv.Atoi(xy2[0])
 			y2, _ := strconv.Atoi(xy2[1])
-			if depth < y1 {
-				depth = y1
-			}
-			if depth < y2 {
-				depth = y2
-			}
 			if x1 == x2 {
 				if y1 > y2 {
 					y1, y2 = y2, y1
@@ -48,6 +42,9 @@ func main() {
 				for x := x1; x <= x2; x++ {
 					_map[fmt.Sprintf("%d,%d", x, y1)] = '#'
 				}
+			}
+			if depth < y2 {
+				depth = y2
 			}
 		}
 	}
