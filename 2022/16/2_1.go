@@ -9,7 +9,7 @@ import (
 )
 
 const START = "AA"
-const MAX_TIME = 30
+const MAX_TIME = 26
 
 type Node struct {
 	name      string
