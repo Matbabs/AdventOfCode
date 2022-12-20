@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-const STEPS = 100000
+const STEPS = 1000000000000
 const WIDTH = 7
 const START_X = 2
 const START_Y = 3

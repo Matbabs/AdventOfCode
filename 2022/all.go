@@ -11,6 +11,11 @@ const WHITE = "\033[37m"
 const PURPLE = "\033[35m"
 const YELLOW = "\033[0;33m"
 
+var excludeDays = map[int][]bool{
+	17: {false, true},
+	19: {true, true},
+}
+
 func displayTitle() {
 	title := figure.NewColorFigure("Advent Of Code !", "", "green", true)
 	title.Print()
@@ -19,6 +24,10 @@ func displayTitle() {
 
 func displayDay(day int) {
 	fmt.Printf("\n%s* Day %d *\n\n", WHITE, day)
+}
+
+func displayInfo(s string) {
+	fmt.Printf("%s%s", WHITE, s)
 }
 
 func executeDayByPart(day int, part int) func() {
@@ -39,12 +48,17 @@ func main() {
 	displayTitle()
 	for i := 1; i <= 25; i++ {
 		for j := 1; j <= 2; j++ {
-			result := executeDayByPart(i, j)
-			if result != nil {
-				if j == 1 {
-					displayDay(i)
-				}
-				result()
+			if j == 1 {
+				displayDay(i)
+			}
+			parts, excluded := excludeDays[i]
+			if excluded && parts[j-1] {
+				displayInfo("excluded for timeout\n")
+				continue
+			}
+			displayResult := executeDayByPart(i, j)
+			if displayResult != nil {
+				displayResult()
 			}
 		}
 	}
