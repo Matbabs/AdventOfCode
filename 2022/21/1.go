@@ -9,8 +9,6 @@ import (
 	"strings"
 )
 
-type Operation string
-
 const (
 	ROOT  string    = "root"
 	PLUS  Operation = "+"
@@ -18,6 +16,8 @@ const (
 	DIV   Operation = "/"
 	MUL   Operation = "*"
 )
+
+type Operation string
 
 type Monkey struct {
 	name        string

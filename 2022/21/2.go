@@ -11,8 +11,6 @@ import (
 	"github.com/google/uuid"
 )
 
-type Operation string
-
 const (
 	HUMAN string    = "humn"
 	ROOT  string    = "root"
@@ -21,6 +19,8 @@ const (
 	DIV   Operation = "/"
 	MUL   Operation = "*"
 )
+
+type Operation string
 
 type Monkey struct {
 	name        string
