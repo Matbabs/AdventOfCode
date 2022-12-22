@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math"
 	"os"
 	"regexp"
 	"strconv"
@@ -88,23 +89,93 @@ func main() {
 			monkeyMap.maxR = max(monkeyMap.maxR, r)
 		}
 	}
-	position := monkeyMap.topLeft
-	direction := ConstraintPoint[int]{R: 0, C: 1}
+	sideLength := int(math.Sqrt(float64(len(monkeyMap._map) / 6)))
+	directionUp := ConstraintPoint[int]{R: -1, C: 0}
+	directionDown := ConstraintPoint[int]{R: 1, C: 0}
+	directionLeft := ConstraintPoint[int]{R: 0, C: -1}
+	directionRight := ConstraintPoint[int]{R: 0, C: 1}
 	nextPosDir := func(position, direction ConstraintPoint[int]) (ConstraintPoint[int], ConstraintPoint[int]) {
 		newPos := ConstraintPoint[int]{
 			R: position.R + direction.R,
 			C: position.C + direction.C,
 		}
-		val, _ := monkeyMap._map[newPos]
-		if val {
+		newDir := direction
+		_, exists := monkeyMap._map[newPos]
+		if !exists {
+			switch direction.C {
+			case 1:
+				switch newPos.R / sideLength {
+				case 0:
+					newPos = ConstraintPoint[int]{R: sideLength*2 + (sideLength - 1 - newPos.R), C: sideLength*2 - 1}
+					newDir = directionLeft
+				case 1:
+					newPos = ConstraintPoint[int]{R: sideLength - 1, C: newPos.R + sideLength}
+					newDir = directionUp
+				case 2:
+					newPos = ConstraintPoint[int]{R: sideLength*3 - 1 - newPos.R, C: sideLength*3 - 1}
+					newDir = directionLeft
+				case 3:
+					newPos = ConstraintPoint[int]{R: 3*sideLength - 1, C: newPos.R - 2*sideLength}
+					newDir = directionUp
+				}
+			case -1:
+				switch newPos.R / sideLength {
+				case 0:
+					newPos = ConstraintPoint[int]{R: 3*sideLength - 1 - newPos.R, C: 0}
+					newDir = directionRight
+				case 1:
+					newPos = ConstraintPoint[int]{R: 2 * sideLength, C: newPos.R - sideLength}
+					newDir = directionDown
+				case 2:
+					newPos = ConstraintPoint[int]{R: 3*sideLength - 1 - newPos.R, C: sideLength}
+					newDir = directionRight
+				case 3:
+					newPos = ConstraintPoint[int]{R: 0, C: newPos.R - sideLength*2}
+					newDir = directionDown
+				}
+			}
+			switch direction.R {
+			case 1:
+				switch newPos.C / sideLength {
+				case 0:
+					newPos = ConstraintPoint[int]{R: 0, C: newPos.C + sideLength*2}
+					newDir = directionDown
+				case 1:
+					newPos = ConstraintPoint[int]{R: newPos.C + 2*sideLength, C: sideLength - 1}
+					newDir = directionLeft
+				case 2:
+					newPos = ConstraintPoint[int]{R: newPos.C - sideLength, C: sideLength*2 - 1}
+					newDir = directionLeft
+				}
+			case -1:
+				switch newPos.C / sideLength {
+				case 0:
+					newPos = ConstraintPoint[int]{R: newPos.C + sideLength, C: sideLength}
+					newDir = directionRight
+				case 1:
+					newPos = ConstraintPoint[int]{R: newPos.C + 2*sideLength, C: 0}
+					newDir = directionRight
+				case 2:
+					newPos = ConstraintPoint[int]{R: sideLength*4 - 1, C: newPos.C - 2*sideLength}
+					newDir = directionUp
+				}
+
+			}
+		}
+		if val, exists := monkeyMap._map[newPos]; !exists {
+			panic("shouldn't happen")
+		} else if val {
 			return position, direction
 		} else {
-			return newPos, direction
+			return newPos, newDir
 		}
 	}
-	for _, move := range monkeyMap.moves {
-		if move.turn == "" {
-			for x := 0; x < move.magnitude; x++ {
+	position := monkeyMap.topLeft
+	direction := ConstraintPoint[int]{R: 0, C: 1}
+	for _, moves := range monkeyMap.moves {
+		if moves.turn == "" {
+			// num
+			for x := 0; x < moves.magnitude; x++ {
 				newPos, newDir := nextPosDir(position, direction)
 				if newPos == position {
 					break
@@ -113,18 +184,16 @@ func main() {
 					direction = newDir
 				}
 			}
-		} else if move.turn == RIGHT {
+		} else if moves.turn == RIGHT {
 			direction = ConstraintPoint[int]{
 				R: direction.C,
 				C: -direction.R,
 			}
-		} else if move.turn == LEFT {
+		} else if moves.turn == LEFT {
 			direction = ConstraintPoint[int]{
 				R: -direction.C,
 				C: direction.R,
 			}
-		} else {
-			panic("ohe")
 		}
 	}
 	face := 0
