@@ -162,9 +162,8 @@ func main() {
 
 			}
 		}
-		if val, exists := monkeyMap._map[newPos]; !exists {
-			panic("shouldn't happen")
-		} else if val {
+		val, _ := monkeyMap._map[newPos]
+		if val {
 			return position, direction
 		} else {
 			return newPos, newDir
@@ -174,7 +173,6 @@ func main() {
 	direction := ConstraintPoint[int]{R: 0, C: 1}
 	for _, moves := range monkeyMap.moves {
 		if moves.turn == "" {
-			// num
 			for x := 0; x < moves.magnitude; x++ {
 				newPos, newDir := nextPosDir(position, direction)
 				if newPos == position {
