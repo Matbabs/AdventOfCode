@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 	"strings"
 )
@@ -22,7 +21,7 @@ func (coord Coord) Add(add Coord) Coord {
 	return Coord{coord.x + add.x, coord.y + add.y}
 }
 
-func SnafuToDecimal(snafu string) int {
+func snafuToDecimal(snafu string) int {
 	decimal := 0
 	for _, ch := range snafu {
 		var digit int
@@ -40,7 +39,7 @@ func SnafuToDecimal(snafu string) int {
 	return decimal
 }
 
-func DecimalToSnafu(decimal int) string {
+func decimalToSnafu(decimal int) string {
 	switch decimal {
 	case -2:
 		return "="
@@ -62,25 +61,16 @@ func DecimalToSnafu(decimal int) string {
 }
 
 func main() {
-	file, err := os.Open("input.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
+	result := 0
+	file, _ := os.Open("input.txt")
 	defer file.Close()
-
-	sum := 0
-
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
 		if len(line) == 0 {
 			continue
 		}
-		sum += SnafuToDecimal(line)
+		result += snafuToDecimal(line)
 	}
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println(DecimalToSnafu(sum))
+	fmt.Println(decimalToSnafu(result))
 }
