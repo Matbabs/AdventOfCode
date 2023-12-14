@@ -1,5 +1,4 @@
 mkdir $1
 cp _template/1.go $1
+cp _template/input.txt $1
 cd $1
-wget --load-cookies=../cookie.txt https://adventofcode.com/2023/day/$1/input
-mv input input.txt
