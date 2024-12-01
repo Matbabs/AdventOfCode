@@ -9,5 +9,6 @@ for el in l:
     for er in r:
         if el == er:
             c += 1
+    print(c, r.count(el))
     s += el * c
 print(s)
