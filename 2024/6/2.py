@@ -1,4 +1,4 @@
-def s(px, py, p, d):
+def s(px, py, p):
     v = set()
     while True:
         if f"{px},{py},{p}" in v:
@@ -37,7 +37,7 @@ def b(nx, ny, np):
             bx = nx - 1
     if bx >= 0 and bx < len(d[0]) and by >= 0 and by < len(d) and d[by][bx] == ".":
         d[by] = d[by][:bx] + "#" + d[by][bx + 1 :]
-        _, l = s(px, py, p, d)
+        _, l = s(px, py, p)
         d[by] = d[by][:bx] + "." + d[by][bx + 1 :]
     return bx, by, l
 
@@ -47,7 +47,7 @@ for y in range(len(d)):
     for x in range(len(d[0])):
         if d[y][x] in ["^", ">", "v", "<"]:
             px, py, p = x, y, d[y][x]
-v, _ = s(px, py, p, d)
+v, _ = s(px, py, p)
 for n in v:
     sn = n.split(",")
     nx, ny, np = int(sn[0]), int(sn[1]), sn[2]
